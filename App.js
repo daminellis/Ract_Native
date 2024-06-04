@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Detalhes from "./src/pages/Detalhes";
-import NovasTarefas from "./src/pages/NovasTarefas";
-import Tarefas from "./src/pages/Tarefas";
+import Task from "./src/pages/Task";
+import NewTask from "./src/pages/NewTask";
+import Details from "./src/pages/Details";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -11,9 +11,9 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Detalhes' component={Detalhes} />
-        <Stack.Screen name='NovasTarefas' component={NovasTarefas} />
-        <Stack.Screen name='Tarefas' component={Tarefas} />
+        <Stack.Screen name='Task' component={Task} />
+        <Stack.Screen name='Details' component={Details} />
+        <Stack.Screen name='NewTask' component={NewTask} />
       </Stack.Navigator>
     </NavigationContainer>
 
