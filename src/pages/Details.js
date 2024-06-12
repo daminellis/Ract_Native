@@ -1,3 +1,4 @@
+import { set } from 'firebase/database';
 import {database, collection, updateDoc } from '../config/firebaseconfig';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
@@ -5,25 +6,28 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native
 export default function Details({ navigation, route }) {
   
   const [descriptionEdit, setDescriptionEdit] = useState(route.params.description)
-  
-  function editTask (){
-    const taskDocRef = doc(database, 'task', id)
+  const idTask = route.params.id
+
+  function editTask (description, id){
+    const taskDocRef = doc(database, 'Tasks', id)
     updateDoc(taskDocRef, {
-      description: descriptionEdit
+      description: descriptionEdit,
     })
     navigation.navigate('Task')
   }
 
   return (
-      <View >
+      <View style={styles.container}>
         <Text>Detalhes</Text>
       <TextInput
       style={styles.inputTask}
       placeholder='Ex estudar'
       value={descriptionEdit}
-      onChangeText={}
+      onChangeText={setDescriptionEdit}
       />
-      <TouchableOpacity style={styles.btnsave}>
+      <TouchableOpacity style={styles.btnsave}
+        onPress={() => editTask(descriptionEdit, idTask)}
+      >
         <Text style={styles.btntxtsave}>Salvar</Text>
       </TouchableOpacity>
       </View>
@@ -37,8 +41,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  inputTask:{
+
+  },
   btnsave:{
 
   },
+  btntxtsave:{
 
+  },
 })
