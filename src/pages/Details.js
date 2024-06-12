@@ -1,5 +1,4 @@
-import { set } from 'firebase/database';
-import {database, collection, updateDoc } from '../config/firebaseconfig';
+import {database, doc, updateDoc } from '../config/firebaseconfig';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
