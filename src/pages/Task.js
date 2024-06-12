@@ -38,17 +38,25 @@ export default function Task({ navigation }) {
         data={task}
         renderItem={({ item }) => {
           return (
-            <View style={styles.task}>
+            <View style={styles.tasks}>
+              <Text style={styles.txtdescription}
+               onPress={() =>{
+                navigation.navigate('Details',{
+                  id: item.id,
+                  description: item.description
+                })
+               }}
+              >
+                {item.description}
+              </Text>
               <TouchableOpacity
                 onPress={() => {
                   deleteTask(item.id);
                 }}
+                style={styles.btndelete}
               >
                 <AntDesign name="delete" size={24} color="black" />
               </TouchableOpacity>
-              <Text>
-                {item.description}
-              </Text>
             </View>
           );
         }}
@@ -89,5 +97,18 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: '#BCBD8B',
+  },
+  tasks:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  btndelete:{
+    paddingRight: '2%'
+  },
+  txtdescription:{
+    alignContent: 'flex-start',
+    marginLeft: '2%',
+    paddingHorizontal: 20,
+    color: '#373D20',
   }
 });
